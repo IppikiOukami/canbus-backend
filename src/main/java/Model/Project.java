@@ -6,6 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Project {
+    private String projectID;
     private String analystInitials;
     private int canConnectorID;
     private int vehicleID;
