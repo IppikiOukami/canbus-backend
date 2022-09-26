@@ -1,4 +1,4 @@
-package Model;
+package com.TeamNumberOne.canbusbackend.Model;
 
 import lombok.Getter;
 import lombok.Setter;

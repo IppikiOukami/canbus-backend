@@ -1,13 +1,12 @@
-package Model;
+package com.TeamNumberOne.canbusbackend.Model;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class Project {
-    private String projectID;
-    private String analystInitials;
+@Setter
+public class Configuration {
+    private String analysisInitials;
     private int canConnectorID;
     private int vehicleID;
     private int baudRate;
