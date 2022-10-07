@@ -3,12 +3,19 @@ package com.TeamNumberOne.canbusbackend.Model;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 @Getter
 @Setter
+@Entity
 public class Node {
+    @Id
+    private int nodeID;
+    private String projectID;
     private String NodeName;
     private String annotation;
-    private String NodeID;
     private String ICON_PATH;
-    private int[] xyPosition;
+    private String xyPosition;
 }
