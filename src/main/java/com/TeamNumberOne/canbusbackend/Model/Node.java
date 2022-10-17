@@ -11,9 +11,9 @@ import javax.persistence.Id;
 @Entity
 public class Node {
     @Id
-    private int nodeID;
-    private String projectID;
     private String NodeName;
+    private String ProjectID;
+    private int NodeID;
     private String annotation;
     private String ICON_PATH;
     private String xyPosition;

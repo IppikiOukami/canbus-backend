@@ -6,8 +6,8 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Synchro {
-    private String SOURCE_IP;
-    private String DEST_IP;
+    private String SOURCE;
+    private String DEST;
     private boolean isActive;
     private String[] frames;
 }

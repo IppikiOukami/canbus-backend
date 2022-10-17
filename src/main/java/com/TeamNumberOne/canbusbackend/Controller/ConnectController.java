@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.*;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @Controller // This means that this class is a com.TeamNumberOne.canbusbackend.Controller
 @RequestMapping(path = "/visualizer")
@@ -21,9 +23,9 @@ public class ConnectController {
 
     @PostMapping(path="/addNode") // Map ONLY POST Requests
     public @ResponseBody String addNewNode (
-            @RequestParam int nodeID,
-            @RequestParam String projectID,
-            @RequestParam String nodeName,
+            @RequestParam String NodeName,
+            @RequestParam String ProjectID,
+            @RequestParam int NodeID,
             @RequestParam String annotation,
             @RequestParam String ICON_PATH,
             @RequestParam String xyPosition
@@ -32,9 +34,9 @@ public class ConnectController {
         // @RequestParam means it is a parameter from the GET or POST request
 
         Node node = new Node();
-        node.setNodeID(nodeID);
-        node.setProjectID(projectID);
-        node.setNodeName(nodeName);
+        node.setNodeName(NodeName);
+        node.setProjectID(ProjectID);
+        node.setNodeID(NodeID);
         node.setAnnotation(annotation);
         node.setICON_PATH(ICON_PATH);
         node.setXyPosition(xyPosition);
@@ -45,24 +47,28 @@ public class ConnectController {
     @PostMapping(path="/addPacket") // Map ONLY POST Requests
     public @ResponseBody String addNewPacket (
             @RequestParam String packetID,
+            @RequestParam int NodeID,
             @RequestParam String Frame_START,
-            @RequestParam String Frame_End,
+            @RequestParam String CAN_ID,
             @RequestParam String control_Field,
             @RequestParam String data_Field,
             @RequestParam String CRC_Field,
-            @RequestParam boolean ACK
+            @RequestParam boolean ACK,
+            @RequestParam String Frame_End
     ) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
         Packet packet = new Packet();
         packet.setPacketID(packetID);
+        packet.setNodeID(NodeID);
         packet.setFrame_START(Frame_START);
-        packet.setFrame_END(Frame_End);
+        packet.setCAN_ID(CAN_ID);
         packet.setControl_Field(control_Field);
         packet.setData_Field(data_Field);
         packet.setCRC_Field(CRC_Field);
         packet.setACK(ACK);
+        packet.setFrame_END(Frame_End);
         packetRepository.save(packet);
         return "Packet Saved";
     }
@@ -77,5 +83,26 @@ public class ConnectController {
     public @ResponseBody Iterable<Packet> getAllPackets() {
         // This returns a JSON or XML with the packets
         return packetRepository.findAll();
+    }
+
+    @GetMapping(path = "/NodePackets")
+    public @ResponseBody Iterable<Packet> getNodePackets(
+            @RequestParam int NodeID
+    ){
+        Iterable<Packet> packets = packetRepository.findAll();
+        List<Packet> nodePackets = new ArrayList<Packet>();
+        for(Packet packet:packets){
+            if(packet.getNodeID() == NodeID)
+                nodePackets.add(packet);
+        }
+        return nodePackets;
+    }
+
+    @GetMapping(path = "/SinglePacket")
+    public @ResponseBody Object getPacket(
+            @RequestParam String packetID
+    ){
+        Optional<Packet> packet = packetRepository.findById(packetID);
+        return packet.isPresent()?packet:"No packet by that name";
     }
 }
