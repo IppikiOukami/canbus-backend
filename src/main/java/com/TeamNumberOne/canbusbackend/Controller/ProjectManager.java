@@ -32,6 +32,21 @@ public class ProjectManager {
         return "Invalid projectID";
     }
 
+    @PostMapping(path="/restore") // Map ONLY POST Requests
+    public @ResponseBody String restore (
+            @RequestParam String projectID
+    ) {
+        if(!projectID.equals("")){
+            Optional<Project> curProj = projectRepository.findById(projectID);
+            if(curProj.isPresent()){
+                curProj.ifPresent(project -> project.setActive(true));
+                projectRepository.save(curProj.get());
+                return "Project Archived!";
+            }
+        }
+        return "Invalid projectID";
+    }
+
     @PostMapping(path = "/newproject")
     public @ResponseBody String newProject(
             @RequestParam String projectID,
