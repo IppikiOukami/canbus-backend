@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @Controller // This means that this class is a com.TeamNumberOne.canbusbackend.Controller
-@RequestMapping(path = "/visualizer")
+@RequestMapping(path = "/projects")
 public class ProjectManager {
     @Autowired
     private ProjectRepository projectRepository;

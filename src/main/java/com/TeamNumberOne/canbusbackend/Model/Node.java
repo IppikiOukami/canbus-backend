@@ -13,7 +13,7 @@ public class Node {
     @Id
     private String NodeName;
     private String ProjectID;
-    private int NodeID;
+    private String NodeID;
     private String annotation;
     private String ICON_PATH;
     private String xyPosition;

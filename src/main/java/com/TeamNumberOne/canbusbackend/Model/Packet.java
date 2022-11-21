@@ -12,12 +12,12 @@ import javax.persistence.Id;
 public class Packet {
     @Id
     private String packetID;
-    private int NodeID;
+    private String NodeID;
     private String Frame_START;
     private String CAN_ID;
     private String control_Field;
     private String data_Field;
     private String CRC_Field;
-    private boolean ACK;
+    private String ACK;
     private String Frame_END;
 }
