@@ -1,11 +1,15 @@
+/**
+ * @author Mario Everardo Macias
+ */
 package com.TeamNumberOne.canbusbackend;
 
-import com.TeamNumberOne.canbusbackend.Controller.NodeManager;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+/**
+ * Runs the full Spring Boot application on port 8080
+ */
 @SpringBootApplication
 @ComponentScan({"com.TeamNumberOne.canbusbackend.Controller"})
 public class CanbusBackendApplication {

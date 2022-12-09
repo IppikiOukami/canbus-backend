@@ -1,21 +1,23 @@
+/**
+ * @author Mario Everardo Macias
+ */
 package com.TeamNumberOne.canbusbackend.Controller;
 
-import com.TeamNumberOne.canbusbackend.Model.Node;
-
 import com.TeamNumberOne.canbusbackend.Model.Packet;
-import com.TeamNumberOne.canbusbackend.Repositories.NodeRepository;
 import com.TeamNumberOne.canbusbackend.Repositories.PacketRepository;
-import com.mysql.cj.xdevapi.AddStatementImpl;
-import com.sun.xml.bind.v2.runtime.reflect.Lister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.*;
-
-@CrossOrigin(origins = "*")
+/**
+ * Creates a controller for the Packet model, this allows the population of data in the model,
+ * and allows the model to be modified without full access to the model for the end user.
+ * */
+@CrossOrigin
 @Controller // This means that this class is a com.TeamNumberOne.canbusbackend.Controller
 @RequestMapping(path = "/packets")
 public class PacketManager {
@@ -91,41 +93,6 @@ public class PacketManager {
             System.out.println("TOBE IMPLEMENTED");
         }
         return "Packet updated successfully!";
-    }
-
-    public static void main(String[] args) {
-        Enumeration<NetworkInterface> tempNetInterface = null;
-        try {
-            tempNetInterface = NetworkInterface.getNetworkInterfaces();
-        } catch (SocketException ex) {
-            ex.printStackTrace();
-        }
-        ArrayList<NetworkInterface> interfaces = new ArrayList<>(Collections.list(tempNetInterface));
-        ArrayList<NetworkInterface> realInterfaces = new ArrayList<>();
-        for(NetworkInterface iNet: interfaces){
-            try{
-                if (iNet.getHardwareAddress() != null){
-                    realInterfaces.add(iNet);
-                }
-            } catch (SocketException e) {
-                System.out.println(e.getMessage());;
-            }
-        }
-        for(NetworkInterface iNet: realInterfaces){
-            if(iNet.getName().contains("eth")){
-                System.out.println("Ethernet Connection: " + iNet.getDisplayName());
-                try{
-                    if(iNet.isUp()){
-                        System.out.println("Connection is active!" + iNet.getInterfaceAddresses());
-                        System.out.println();
-                    }else{
-                        System.out.println("Connection is inactive!");
-                    }
-                }catch (SocketException e){
-                    System.out.println(e.getMessage());
-                }
-            }
-        }
     }
 }
 

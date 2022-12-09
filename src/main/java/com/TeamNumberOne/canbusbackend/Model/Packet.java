@@ -1,3 +1,6 @@
+/**
+ * @author Mario Everardo Macias
+ */
 package com.TeamNumberOne.canbusbackend.Model;
 
 import lombok.Getter;
@@ -6,6 +9,12 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Creates a Table in the database for the Packet object
+ * with the attributes as column names.
+ * Automatic setters and getters are assigned to each attribute
+ * The @Id tage denotes the attribute used as a primary key in the table
+ * */
 @Setter
 @Getter
 @Entity

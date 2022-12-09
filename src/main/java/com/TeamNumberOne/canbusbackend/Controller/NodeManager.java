@@ -1,16 +1,20 @@
+/**
+ * @author Mario Everardo Macias
+ */
 package com.TeamNumberOne.canbusbackend.Controller;
 
 import com.TeamNumberOne.canbusbackend.Model.Node;
-
-import com.TeamNumberOne.canbusbackend.Model.Packet;
 import com.TeamNumberOne.canbusbackend.Repositories.NodeRepository;
-import com.TeamNumberOne.canbusbackend.Repositories.PacketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import java.util.Optional;
 
-import java.util.*;
 
+/**
+ * Creates a controller for the Node model, this allows the population of data in the model,
+ * and allows the model to be modified without full access to the model for the end user.
+ * */
 @CrossOrigin
 @Controller // This means that this class is a com.TeamNumberOne.canbusbackend.Controller
 @RequestMapping(path = "/nodes")

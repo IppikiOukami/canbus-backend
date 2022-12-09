@@ -1,3 +1,6 @@
+/**
+ * @author Mario Everardo Macias
+ */
 package com.TeamNumberOne.canbusbackend.Controller;
 
 import com.TeamNumberOne.canbusbackend.Model.Project;
@@ -5,12 +8,15 @@ import com.TeamNumberOne.canbusbackend.Repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*")
+/**
+ * Creates a controller for the Project model, this allows the population of data in the model,
+ * and allows the model to be modified without full access to the model for the end user.
+ * */
+@CrossOrigin
 @Controller // This means that this class is a com.TeamNumberOne.canbusbackend.Controller
 @RequestMapping(path = "/projects")
 public class ProjectManager {
