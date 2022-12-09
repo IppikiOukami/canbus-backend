@@ -1,5 +1,6 @@
 /**
  * @author Mario Everardo Macias
+ * @author Daniel Moreno
  */
 package com.TeamNumberOne.canbusbackend.Repositories;
 
